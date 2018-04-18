@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
+const helpers = require("./helpers");
 const gondorRoutes = require("./gondor");
 
 const app = express();
@@ -13,8 +14,13 @@ app.set("view engine", "pug");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/gondor", gondorRoutes);
+// pass variables to our templates + all requests
+app.use((req, res, next) => {
+  res.locals.h = helpers;
+  next();
+});
 
+app.use("/gondor", gondorRoutes);
 // app.set("port", 7777);
 
 // const server = app.listen(app.get("port"), () => {

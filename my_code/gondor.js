@@ -13,10 +13,18 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/about", (req, res) => {
-  res.send(
-    "At this time in history the lands that will be Gondor some day lie covered in forests and teem with wild life"
-  );
+router.get("/aboutGondor", (req, res) => {
+  res.render("content1", {
+    country: "Gondor",
+    title: "Gondor Travelogue"
+  });
+});
+
+router.get("/aboutRohan", (req, res) => {
+  res.render("content1", {
+    country: "Rohan",
+    title: "Rohan Travelogue"
+  });
 });
 
 router.get("/traveltips", (req, res) => {
