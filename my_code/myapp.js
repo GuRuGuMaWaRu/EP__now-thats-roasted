@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const helpers = require("./helpers");
-const gondorRoutes = require("./gondor");
+const routes = require("./routes");
+// const gondorRoutes = require("./gondor");
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/gondor", gondorRoutes);
+// app.use("/gondor", gondorRoutes);
+app.use("/", routes);
 // app.set("port", 7777);
 
 // const server = app.listen(app.get("port"), () => {
