@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
+
 const realmController = require("../controllers/realmController");
 
-router.use(function timeLog(req, res, next) {
+router.use((req, res, next) => {
   console.log(`Time: ${Date.now()}`);
   next();
 });
