@@ -5,7 +5,7 @@ exports.notFound = (req, res, next) => {
   next(error);
 };
 
-exports.errors = (err, req, res, next) => {
+exports.productionErrors = (err, req, res, next) => {
   res.status(err.status || 500);
   res.render("error", {
     status: err.status,
