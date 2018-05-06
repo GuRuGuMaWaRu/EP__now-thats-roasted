@@ -22,11 +22,21 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  req.name = "Peter";
+  if (req.name === "Peter") {
+    throw Error("That is a stupid name!");
+  }
+  next();
+});
+
 app.use("/", routes);
 
 // error handlers
+// error handler --- not found error
 app.use(errorHandlers.notFound);
 
+app.use(errorHandlers.hohohoErrors);
 // error handler --- production
 app.use(errorHandlers.developmentErrors);
 
