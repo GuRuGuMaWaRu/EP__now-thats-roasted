@@ -28,7 +28,7 @@ app.use("/", routes);
 app.use(errorHandlers.notFound);
 
 // error handler --- production
-app.use(errorHandlers.productionErrors);
+app.use(errorHandlers.developmentErrors);
 
 app.listen(7777, () => {
   console.log("Server running at 7777");
