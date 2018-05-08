@@ -16,4 +16,13 @@ const realmSchema = new mongoose.Schema({
   tags: [String]
 });
 
+realmSchema.pre("save", function(next) {
+  if (!this.isModified("name")) {
+    next(); // skip it
+    return; // stop this fn from running
+  }
+  this.slug = slug(this.name);
+  next();
+});
+
 module.exports = mongoose.model("Realm", realmSchema);
