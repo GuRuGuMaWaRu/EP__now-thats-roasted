@@ -11,5 +11,6 @@ router.use((req, res, next) => {
 router.get("/", realmController.homePage);
 router.get("/gondor", realmController.gondorIndex);
 router.get("/rohan", realmController.rohanIndex);
+router.get("/addRealm", realmController.addRealm);
 
 module.exports = router;

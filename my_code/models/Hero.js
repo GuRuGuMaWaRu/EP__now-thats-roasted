@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 const slug = require("slugs");
 
-const realmSchema = new mongoose.Schema({
+const heroSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    required: "Please provide a name for this realm!"
+    required: "Please provide name for this hero"
   },
   description: {
     type: String,
@@ -16,14 +16,14 @@ const realmSchema = new mongoose.Schema({
   tags: [String]
 });
 
-realmSchema.pre("save", function(next) {
+heroSchema.pre("save", function(next) {
   if (!this.isModified("name")) {
-    next(); // skip it
-    return; // stop this fn from running
+    next();
+    return;
   }
 
   this.slug = slug(this.name);
   next();
 });
 
-module.exports = mongoose.model("Realm", realmSchema);
+module.exports = mongoose.model("Hero", heroSchema);
