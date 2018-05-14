@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-const helpers = require("./helpers");
+const helpers = require("./helpers/helpers");
 const routes = require("./routes");
 const errorHandlers = require("./handlers/errorHandlers");
 
@@ -16,8 +16,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 // Takes raw requests and turns them into usable properties on req.body
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // pass variables to our templates + all requests
 app.use((req, res, next) => {
@@ -40,7 +40,7 @@ app.use("/", routes);
 // error handler --- not found error
 app.use(errorHandlers.notFound);
 
-app.use(errorHandlers.hohohoErrors);
+// app.use(errorHandlers.hohohoErrors);
 // error handler --- production
 app.use(errorHandlers.developmentErrors);
 

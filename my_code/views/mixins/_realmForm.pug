@@ -1,0 +1,15 @@
+mixin realmForm(realm = {})
+  form(action="/addRealm" method="POST" class="card")
+    label(for="name") Name
+    input(type="text" name="name")
+    label(for="description") Description
+    textarea(name="description")
+
+    -const choices = ['Light', "Darkness", "Horses", "Ancient capital", "Numenorian", "People", "Orcs", "Elves", "Dwarves"]
+
+    ul.tags
+      each choice in choices
+        .tag.tag__choice
+          input(type="checkbox" id=choice value=choice name="tags")
+          label(for=choice) #{choice}
+    input(type="submit" value="Save ->" class="button")

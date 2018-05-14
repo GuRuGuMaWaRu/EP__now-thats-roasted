@@ -1,10 +1,11 @@
 extends layout
+include mixins/_realmForm
 
 block header
-  h1 Add or Edit a Realm
+  h1= title
 
 block content
-  p This is where you will be able to add or edit a realm
+  +realmForm()
 
 block footer
   quote Please be careful when adding a new realm

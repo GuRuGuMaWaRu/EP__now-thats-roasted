@@ -5,6 +5,12 @@ exports.notFound = (req, res, next) => {
   next(error);
 };
 
+exports.catchErrors = fn => {
+  return function(req, res, next) {
+    return fn(req, res, next).catch(next);
+  };
+};
+
 exports.hohohoErrors = (err, req, res, next) => {
   err.stack = err.stack || "";
 
