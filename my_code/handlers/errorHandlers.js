@@ -11,21 +11,21 @@ exports.catchErrors = fn => {
   };
 };
 
-exports.hohohoErrors = (err, req, res, next) => {
-  err.stack = err.stack || "";
+// exports.hohohoErrors = (err, req, res, next) => {
+//   err.stack = err.stack || "";
 
-  const errorDetails = {
-    status: "99999",
-    message: "99999",
-    stackHighlighted: err.stack.replace(
-      /[a-z_-\d]+.js:\d+:\d+/gi,
-      "<mark>$&</mark>"
-    )
-  };
+//   const errorDetails = {
+//     status: "99999",
+//     message: "99999",
+//     stackHighlighted: err.stack.replace(
+//       /[a-z_-\d]+.js:\d+:\d+/gi,
+//       "<mark>$&</mark>"
+//     )
+//   };
 
-  res.status(err.status || 500);
-  res.render("error", errorDetails);
-};
+//   res.status(err.status || 500);
+//   res.render("error", errorDetails);
+// };
 
 exports.developmentErrors = (err, req, res, next) => {
   err.stack = err.stack || "";

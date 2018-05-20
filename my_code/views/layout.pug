@@ -6,6 +6,15 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title= `${title} | ${h.siteName}`
   body
+    block messages
+      if locals.flashes
+        - const categories = Object.keys(locals.flashes)
+        each category in categories
+          each message in flashes[category]
+            .flash
+              p!= message
+              button(onClick="this.parentElement.remove()") &times;
+
     block header
       div This is the default Header
     block content

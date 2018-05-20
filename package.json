@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "nodemon ./my_code/myapp.js",
+    "watch": "nodemon ./my_code/start.js",
     "start": "npm run watch",
     "precommit": "pretty-quick --staged"
   },
@@ -13,7 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.1",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "express-session": "^1.15.6",
     "moment": "^2.22.1",
     "mongoose": "^5.0.17",
     "pug": "^2.0.3",

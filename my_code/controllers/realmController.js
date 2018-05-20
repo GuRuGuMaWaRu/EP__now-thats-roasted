@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// const Realm = mongoose.model("Realm");
+const Realm = mongoose.model("Realm");
 
 exports.homePage = (req, res) => {
   res.render("home", { title: "Home" });
@@ -18,7 +18,8 @@ exports.addRealm = (req, res) => {
 };
 
 exports.createRealm = async (req, res) => {
-  // const realm = new Realm(req.body);
-  // await realm.save();
-  console.log("it worked!");
+  console.log("start sending realm...");
+  const realm = await new Realm(req.body).save();
+  req.flash("success", `Succesfully created a new realm ${req.body.name}`);
+  res.redirect("/");
 };
