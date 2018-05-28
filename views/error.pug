@@ -1,7 +1,10 @@
 extends layout
 
+block header
+  h1= status
+
 block content
-  .inner
-    h2= status
-    p= message
+  p= message
+
+block footer
   pre.error!= stackHighlighted
