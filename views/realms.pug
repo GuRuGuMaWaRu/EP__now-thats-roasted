@@ -1,0 +1,14 @@
+extends layout
+
+include mixins/_realmCard
+
+block header
+  h1= title
+
+block content
+  ul.realms
+    each realm in realms
+      +realmCard(realm)
+
+block footer
+  div Please note that this is an opinionated list of realms and it can be changed without prior notice.

@@ -14,5 +14,6 @@ router.get("/gondor", realmController.gondorIndex);
 router.get("/rohan", realmController.rohanIndex);
 router.get("/addRealm", realmController.addRealm);
 router.post("/addRealm", catchErrors(realmController.createRealm));
+router.get("/realms", catchErrors(realmController.getRealms));
 
 module.exports = router;

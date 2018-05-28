@@ -1,0 +1,4 @@
+mixin realmCard(realm = {})
+  li.realm
+    a(href=`/realm/${realm.slug}`) #{realm.name} 
+    span.description --- #{realm.description}

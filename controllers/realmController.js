@@ -26,3 +26,8 @@ exports.createRealm = async (req, res) => {
   req.flash("success", `Succesfully created a new realm ${req.body.name}`);
   res.redirect(`/realm/${realm.slug}`);
 };
+
+exports.getRealms = async (req, res) => {
+  const realms = await Realm.find();
+  res.render("./realms", { title: "Realms", realms });
+};

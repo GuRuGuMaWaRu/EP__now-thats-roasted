@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "precommit": "pretty-quick --staged",
-    "watch": "nodemon ./start.js --ignore public/",
-    "start":
-      "concurrently \"npm run watch\" \"npm run assets\" --names \"рџ’»,рџ“¦\" --prefix name",
-    "assets": "webpack -w --display-max-modules 0"
+    "start": "nodemon ./start.js --ignore public/"
   },
   "keywords": [],
   "author": "",
