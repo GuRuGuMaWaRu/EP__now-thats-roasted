@@ -1,11 +1,8 @@
 extends layout
-
 include mixins/_realmCard
 
-block header
-  h1= title
-
 block content
+  h1= title
   ul.realms
     each realm in realms
       +realmCard(realm)

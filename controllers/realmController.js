@@ -6,7 +6,7 @@ exports.homePage = (req, res) => {
   req.flash("error", "error message");
   req.flash("info", "info message");
   req.flash("warning", "warning message");
-  res.render("home", { title: "Home" });
+  res.render("home", { title: "Middlearth Travelogue" });
 };
 
 exports.gondorIndex = (req, res) => {
