@@ -1,4 +1,5 @@
 mixin realmCard(realm = {})
   li.realm
     a(href=`/realm/${realm.slug}`) #{realm.name} 
-    span.description --- #{realm.description}
+    - const processedDescription = realm.description.split(" ")
+    span.description --- #{processedDescription.slice(0, 15).join("")}#{processedDescription.length > 15 ? "..." : ""}
