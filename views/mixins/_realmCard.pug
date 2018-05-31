@@ -2,4 +2,7 @@ mixin realmCard(realm = {})
   li.realm
     a(href=`/realm/${realm.slug}`) #{realm.name} 
     - const processedDescription = realm.description.split(" ")
-    span.description --- #{processedDescription.slice(0, 15).join("")}#{processedDescription.length > 15 ? "..." : ""}
+    span.realm__description --- #{processedDescription.slice(0, 15).join("")}#{processedDescription.length > 15 ? "..." : ""}
+    span.realm__edit ---
+    a(href=`/realms/${realm._id}/edit`) Edit
+      //- != h.icon('pencil') 
