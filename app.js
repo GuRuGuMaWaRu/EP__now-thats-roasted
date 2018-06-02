@@ -59,6 +59,7 @@ app.use("/", routes);
 // error handler --- not found error
 app.use(errorHandlers.notFound);
 
+app.use(errorHandlers.flashValidationErrors);
 // Otherwise this was a really bad error we didn't expect! Shoot eh
 if (app.get("env") === "development") {
   /* Development Error Handler - Prints stack trace */

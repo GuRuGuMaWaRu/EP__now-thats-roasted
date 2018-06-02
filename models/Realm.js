@@ -13,7 +13,22 @@ const realmSchema = new mongoose.Schema({
     trim: true
   },
   slug: String,
-  tags: [String]
+  tags: [String],
+  created: {
+    type: Date,
+    default: Date.now
+  },
+  location: {
+    type: {
+      type: String,
+      default: "Point"
+    },
+    coordinates: [{ type: Number, required: "Please provide coordinates!" }],
+    address: {
+      type: String,
+      required: "Please provide address!"
+    }
+  }
 });
 
 realmSchema.pre("save", function(next) {

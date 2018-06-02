@@ -4,6 +4,12 @@ mixin realmForm(realm = {})
     input(type="text" name="name" value=realm.name)
     label(for="description") Description
     textarea(name="description")= realm.description
+    label(for="address") Address
+    input(type="text" id="address" name="location[address]" value=(realm.location && realm.location.address))
+    label(for="lng") Adress Lng
+    input(type="text" id="lng" name="location[coordinates][0]" value=(realm.location && realm.location.coordinates[0]))
+    label(for="lat") Adress Lat
+    input(type="text" id="lat" name="location[coordinates][1]" value=(realm.location && realm.location.coordinates[1]))
 
     -const choices = ['Light', "Darkness", "Horses", "Ancient capital", "Numenorian", "People", "Orcs", "Elves", "Dwarves"]
     -const tags = realm.tags || []

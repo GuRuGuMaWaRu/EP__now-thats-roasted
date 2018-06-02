@@ -46,6 +46,7 @@ exports.updateRealm = async (req, res) => {
     runValidators: true
   }).exec();
 
+  console.log(req.body);
   req.flash(
     "success",
     `Successfully updated <strong>${realm.name}</strong>! <a href="/realms/${
@@ -53,5 +54,5 @@ exports.updateRealm = async (req, res) => {
     }">View realm ---></a>`
   );
 
-  res.redirect(`./realms/${realm._id}/edit`);
+  res.redirect(`/realms/${realm._id}/edit`);
 };
