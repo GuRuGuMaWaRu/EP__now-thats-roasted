@@ -13,8 +13,18 @@ router.get("/", realmController.homePage);
 router.get("/gondor", realmController.gondorIndex);
 router.get("/rohan", realmController.rohanIndex);
 router.get("/addRealm", realmController.addRealm);
-router.post("/addRealm", catchErrors(realmController.createRealm));
-router.post("/addRealm/:id", catchErrors(realmController.updateRealm));
+router.post(
+  "/addRealm",
+  realmController.upload,
+  catchErrors(realmController.resize),
+  catchErrors(realmController.createRealm)
+);
+router.post(
+  "/addRealm/:id",
+  realmController.upload,
+  catchErrors(realmController.resize),
+  catchErrors(realmController.updateRealm)
+);
 router.get("/realms", catchErrors(realmController.getRealms));
 router.get("/realms/:id/edit", catchErrors(realmController.editRealm));
 

@@ -1,15 +1,21 @@
 mixin realmForm(realm = {})
-  form(action=`/addRealm/${realm._id || ''}` method="POST" class="card")
+  form(action=`/addRealm/${realm._id || ''}` method="POST" class="card" enctype="multipart/form-data")
     label(for="name") Name
     input(type="text" name="name" value=realm.name)
     label(for="description") Description
     textarea(name="description")= realm.description
+    //- Upload photo
+    label(for="photo") Photo
+      input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg")
+      //- if store.photo
+      //-   img(src=`/uploads/${store.photo}` alt=store.name width=200)
+    //- Address, lat and lng
     label(for="address") Address
     input(type="text" id="address" name="location[address]" value=(realm.location && realm.location.address))
     label(for="lng") Adress Lng
-    input(type="text" id="lng" name="location[coordinates][0]" value=(realm.location && realm.location.coordinates[0]))
+    input(type="text" id="lng" name="location[coordinates][0]" value=(realm.location && realm.location.coordinates[0]) required)
     label(for="lat") Adress Lat
-    input(type="text" id="lat" name="location[coordinates][1]" value=(realm.location && realm.location.coordinates[1]))
+    input(type="text" id="lat" name="location[coordinates][1]" value=(realm.location && realm.location.coordinates[1]) required)
 
     -const choices = ['Light', "Darkness", "Horses", "Ancient capital", "Numenorian", "People", "Orcs", "Elves", "Dwarves"]
     -const tags = realm.tags || []

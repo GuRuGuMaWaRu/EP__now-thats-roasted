@@ -28,7 +28,8 @@ const realmSchema = new mongoose.Schema({
       type: String,
       required: "Please provide address!"
     }
-  }
+  },
+  photo: String
 });
 
 realmSchema.pre("save", function(next) {
