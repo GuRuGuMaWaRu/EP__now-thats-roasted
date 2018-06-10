@@ -49,7 +49,7 @@ exports.resize = async (req, res, next) => {
   const extension = req.file.mimetype.split("/")[1];
   req.body.photo = `${uuid.v4()}.${extension}`;
 
-  // now resize
+  // now resize & write to disk
   const photo = await jimp.read(req.file.buffer);
   await photo.resize(800, jimp.AUTO);
   await photo.write(`./public/uploads/${req.body.photo}`);
@@ -93,4 +93,15 @@ exports.updateRealm = async (req, res) => {
   );
 
   res.redirect(`/realms/${realm._id}/edit`);
+};
+
+exports.getRealmBySlug = async (req, res, next) => {
+  const realm = await Realm.findOne({ slug: req.params.slug });
+
+  // move to NOT FOUND page
+  if (!realm) {
+    return next();
+  }
+  // res.json(realm);
+  res.render("realm", { realm, title: realm.name });
 };

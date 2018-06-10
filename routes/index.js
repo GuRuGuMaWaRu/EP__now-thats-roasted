@@ -27,5 +27,6 @@ router.post(
 );
 router.get("/realms", catchErrors(realmController.getRealms));
 router.get("/realms/:id/edit", catchErrors(realmController.editRealm));
+router.get("/realm/:slug", catchErrors(realmController.getRealmBySlug));
 
 module.exports = router;

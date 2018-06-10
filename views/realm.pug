@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h2
+    a(href=`/realms/${realm.slug}`) #{realm.name}
+  img(src=`/uploads/${realm.photo || 'realm.jpg'}`)
+  
+  .details #{realm.description}
+
+  if realm.tags
+    ul
+      each tag in realm.tags
+        a(href=`/tags/${tag}`) #{tag}
