@@ -105,3 +105,9 @@ exports.getRealmBySlug = async (req, res, next) => {
   // res.json(realm);
   res.render("realm", { realm, title: realm.name });
 };
+
+exports.getRealmsByTag = async (req, res) => {
+  const tags = await Realm.getTagsList();
+  const tag = req.params.tag;
+  res.render("tags", { tags, tag, title: "Tags" });
+};

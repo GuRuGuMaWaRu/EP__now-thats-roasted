@@ -32,14 +32,32 @@ const realmSchema = new mongoose.Schema({
   photo: String
 });
 
-realmSchema.pre("save", function(next) {
+realmSchema.pre("save", async function(next) {
   if (!this.isModified("name")) {
     next(); // skip it
     return; // stop this fn from running
   }
 
   this.slug = slug(this.name);
+  // deal with possible duplicate slugs
+  const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, "i");
+  const storesWithCurrentSlug = await this.constructor.find({
+    slug: slugRegEx
+  });
+
+  if (storesWithCurrentSlug.length) {
+    this.slug = `${this.slug}-${storesWithCurrentSlug.length + 1}`;
+  }
+
   next();
 });
+
+realmSchema.statics.getTagsList = function() {
+  return this.aggregate([
+    { $unwind: "$tags" },
+    { $group: { _id: "$tags", count: { $sum: 1 } } },
+    { $sort: { count: -1 } }
+  ]);
+};
 
 module.exports = mongoose.model("Realm", realmSchema);

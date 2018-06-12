@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 #{tag || title}
+
+  ul
+    for t in tags
+      li
+        a(href=`/tags/${t._id}` style=(t._id === tag ? "color: red; font-weight: bold; text-decoration: underline;" : "color: #000; text-decoration: none;")) #{t._id}
+        span  --- #{t.count}

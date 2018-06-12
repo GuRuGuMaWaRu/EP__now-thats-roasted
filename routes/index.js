@@ -29,4 +29,7 @@ router.get("/realms", catchErrors(realmController.getRealms));
 router.get("/realms/:id/edit", catchErrors(realmController.editRealm));
 router.get("/realm/:slug", catchErrors(realmController.getRealmBySlug));
 
+router.get("/tags", catchErrors(realmController.getRealmsByTag));
+router.get("/tags/:tag", catchErrors(realmController.getRealmsByTag));
+
 module.exports = router;
