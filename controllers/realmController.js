@@ -107,7 +107,11 @@ exports.getRealmBySlug = async (req, res, next) => {
 };
 
 exports.getRealmsByTag = async (req, res) => {
-  const tags = await Realm.getTagsList();
   const tag = req.params.tag;
-  res.render("tags", { tags, tag, title: "Tags" });
+  const tagQuery = tag || { $exists: true };
+  const tagsPromise = Realm.getTagsList();
+  const realmsPromise = Realm.find({ tags: tagQuery });
+  const [tags, realms] = await Promise.all([tagsPromise, realmsPromise]);
+
+  res.render("tags", { tags, tag, realms, title: "Tags" });
 };
