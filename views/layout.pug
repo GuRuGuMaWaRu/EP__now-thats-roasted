@@ -27,7 +27,19 @@ html(lang="en")
           a(href="/tags") Tags
         span ---
           a(href="/addRealm") Add Realm
+        if user
+          span ---
+            a(href="/logout") Logout
+          span
+            a(href="/account")
+              img.gravatar(src=user.gravatar)
+        else
+          span ---
+            a(href="/register") Register
+          span ---
+            a(href="/login") Log In
     block content
       div This is the default Content
+
     block footer
       div This is the default Footer

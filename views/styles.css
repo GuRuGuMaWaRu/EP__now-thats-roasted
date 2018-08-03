@@ -4,3 +4,8 @@ pre.error {
   line-height: 3;
   white-space: pre-line;
 }
+
+.gravatar {
+  height: 20px;
+  width: 20px;
+}
