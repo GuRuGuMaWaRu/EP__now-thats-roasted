@@ -29,7 +29,12 @@ const realmSchema = new mongoose.Schema({
       required: "Please provide address!"
     }
   },
-  photo: String
+  photo: String,
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: "You must supply an author"
+  }
 });
 
 realmSchema.pre("save", async function(next) {

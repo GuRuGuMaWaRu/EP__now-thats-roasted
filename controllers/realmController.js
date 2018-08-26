@@ -59,6 +59,7 @@ exports.resize = async (req, res, next) => {
 };
 
 exports.createRealm = async (req, res) => {
+  req.body.author = req.user._id;
   const realm = await new Realm(req.body).save();
   req.flash(
     "success",
@@ -72,8 +73,15 @@ exports.getRealms = async (req, res) => {
   res.render("./realms", { title: "Realms", realms });
 };
 
+const confirmOwner = (realm, user) => {
+  if (!realm.author.equals(user._id)) {
+    throw Error("You must own a realm in order to edit it!");
+  }
+};
+
 exports.editRealm = async (req, res) => {
   const realm = await Realm.findOne({ _id: req.params.id });
+  confirmOwner(realm, req.user);
   res.render("./editRealm", { title: `Edit ${realm.name}`, realm });
 };
 
@@ -87,8 +95,8 @@ exports.updateRealm = async (req, res) => {
 
   req.flash(
     "success",
-    `Successfully updated <strong>${realm.name}</strong>! <a href="/realms/${
-      realm._id
+    `Successfully updated <strong>${realm.name}</strong>! <a href="/realm/${
+      realm.slug
     }">View realm ---></a>`
   );
 
@@ -96,7 +104,9 @@ exports.updateRealm = async (req, res) => {
 };
 
 exports.getRealmBySlug = async (req, res, next) => {
-  const realm = await Realm.findOne({ slug: req.params.slug });
+  const realm = await Realm.findOne({ slug: req.params.slug }).populate(
+    "author"
+  );
 
   // move to NOT FOUND page
   if (!realm) {

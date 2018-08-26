@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  pre= h.dump(realm)
   h2
     a(href=`/realms/${realm.slug}`) #{realm.name}
   img(src=`/uploads/${realm.photo || 'realm.jpg'}`)
