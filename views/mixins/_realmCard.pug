@@ -4,6 +4,6 @@ mixin realmCard(realm = {})
     - const processedDescription = realm.description.split(" ")
     span.realm__description --- #{processedDescription.slice(0, 15).join("")}#{processedDescription.length > 15 ? "..." : ""}
     span.realm__edit ---
-    if realm.author.equals(user._id)
+    if user && realm.author.equals(user._id)
       a(href=`/realms/${realm._id}/edit`) Edit
       //- != h.icon('pencil') 
