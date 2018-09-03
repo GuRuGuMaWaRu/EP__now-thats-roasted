@@ -55,4 +55,12 @@ router.post(
   catchErrors(authController.update)
 );
 
+/*
+
+  API
+
+*/
+
+router.get("/api/search", catchErrors(realmController.searchRealms));
+
 module.exports = router;

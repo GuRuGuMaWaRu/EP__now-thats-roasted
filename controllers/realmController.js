@@ -125,3 +125,24 @@ exports.getRealmsByTag = async (req, res) => {
 
   res.render("tags", { tags, tag, realms, title: "Tags" });
 };
+
+exports.searchRealms = async (req, res) => {
+  const realms = await Realm.find(
+    // first find realms that match
+    {
+      $text: {
+        $search: req.query.q
+      }
+    },
+    {
+      score: { $meta: "textScore" }
+    }
+  )
+    .sort({
+      // then sort them
+      score: { $meta: "textScore" }
+    })
+    .limit(5); // limit to only 5 results
+
+  res.json(realms);
+};

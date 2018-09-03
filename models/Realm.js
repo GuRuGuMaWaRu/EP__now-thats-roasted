@@ -37,6 +37,12 @@ const realmSchema = new mongoose.Schema({
   }
 });
 
+// Define our indexes
+realmSchema.index({
+  name: "text",
+  description: "text"
+});
+
 realmSchema.pre("save", async function(next) {
   if (!this.isModified("name")) {
     next(); // skip it
