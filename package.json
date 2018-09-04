@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "watch": "nodemon ./start.js --ignore public/",
+    "assets": "webpack -w --display-max-modules 0",
     "precommit": "pretty-quick --staged",
+    "dev":
+      "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
     "start": "nodemon ./start.js --ignore public/"
   },
   "keywords": [],

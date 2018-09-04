@@ -49,11 +49,17 @@ const styles = {
   ])
 };
 
+// We can also use plugins - this one will compress the crap out of our JS
+// const uglify = new webpack.optimize.UglifyJsPlugin({
+//   // eslint-disable-line
+//   compress: { warnings: false }
+// });
+
 // OK - now it's time to put it all together
 const config = {
   entry: {
     // we only have 1 entry, but I've set it up for multiple in the future
-    App: "./start.js"
+    App: "./public/javascripts/delicious-app.js"
   },
   // we're using sourcemaps and here is where we specify which kind of sourcemap to use
   devtool: "source-map",
